@@ -1,0 +1,28 @@
+services:
+  pdf-api:
+    build: .
+    init: true
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "3000"
+      PDF_API_TOKEN: ${PDF_API_TOKEN:?Set PDF_API_TOKEN in .env or the process environment}
+      PDF_MAX_DOCUMENTS: ${PDF_MAX_DOCUMENTS:-20}
+      PDF_MAX_INPUT_BYTES: ${PDF_MAX_INPUT_BYTES:-20971520}
+      PDF_MAX_OUTPUT_BYTES: ${PDF_MAX_OUTPUT_BYTES:-20971520}
+      PDF_MAX_PAGES: ${PDF_MAX_PAGES:-500}
+      PDF_JOB_TIMEOUT_MS: ${PDF_JOB_TIMEOUT_MS:-10000}
+      PDF_MAX_CONCURRENT: ${PDF_MAX_CONCURRENT:-2}
+      PDF_REQUEST_TIMEOUT_MS: ${PDF_REQUEST_TIMEOUT_MS:-30000}
+    ports:
+      - "127.0.0.1:3000:3000"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 64
+    restart: unless-stopped
+    stop_grace_period: 10s
