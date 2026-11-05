@@ -1,0 +1,14 @@
+{
+  "schema_version": "1",
+  "request_id": "demo-001",
+  "group_id": "fictieve-factuur-001",
+  "output_name": "demo-samengevoegd.pdf",
+  "documents": [
+    { "document_id": "factuur", "field_name": "doc1" },
+    { "document_id": "scan-bijlage", "field_name": "doc2" }
+  ],
+  "ordered_parts": [
+    { "document_id": "factuur" },
+    { "document_id": "scan-bijlage" }
+  ]
+}
